@@ -1,0 +1,91 @@
+---
+title: "Lecture #: Title "
+subtitle: "Methods II"
+#title-slide-attributes:
+ #   data-background-image: UU_sigill.png
+  #  data-background-size: contain
+   # data-background-opacity: "0.8"
+author: "NAME"
+institute: "Department of Peace and Conflict Research, Uppsala University"
+format:
+  revealjs: 
+    theme: [serif, lectures.scss]
+    slide-number: false
+    show-slide-number: all
+    toc: true
+    toc-depth: 1
+    progress: true
+    width: 1200
+    height: 675
+    transition: slide
+    toc-title: "Today's lecture:"
+    smaller: true
+    footer: "Fall 2023"
+    logo: uu_sigill_right.png
+    header-logo: UUtopleft.png
+filters:
+  - reveal-header
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(magrittr)
+library(gapminder)
+knitr::opts_chunk$set(eval=TRUE,cache=F, include=T, echo=F, error=F,message=FALSE, comment=c(" "),width=90)
+
+#install.packages("gapminder")
+gap <- gapminder::gapminder
+```
+
+# Part 1
+
+## Slide Q
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+
+::: notes
+Speaker notes go here.
+:::
+
+## Example dataset
+
+```{r, echo=TRUE, attr.scroll=TRUE}
+
+gap %>%  # take the data set
+  dplyr::select(lifeExp,pop,gdpPercap) %>% # select these variables
+  summary() # provide summary stats
+
+```
+
+## A figure
+
+```{r, echo=TRUE, attr.scroll=TRUE}
+
+ggplot2::ggplot(gap, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  ylab("Life expectancy (years)") +
+  xlab("GDP per capita") +
+  ggtitle("GDP per capita and life expectancy")
+
+
+```
+
+# Break
+
+## 15 min break
+
+![](UU_logo.jpg){width="100" height="100"}
+
+# Part 2
+
+## Regression
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+
+```{r , echo=TRUE, attr.scroll=TRUE}
+summary(lm(lifeExp ~ gdpPercap + pop, data=gap))
+
+
+```
